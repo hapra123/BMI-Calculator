@@ -1,0 +1,107 @@
+
+from tkinter import *
+
+
+
+
+hp=Tk()
+hp.title("BMI calculator")
+hp.geometry('500x450')
+#bg = PhotoImage(file="C:\\Users\\hardi\\Downloads\\gradient.png")
+
+#canvas1 = Canvas(hp, width=400,  height=400)
+
+#canvas1.pack(fill="both", expand=True)
+
+# Display image
+#canvas1.create_image(0, 0, image=bg,anchor="nw")
+
+# Add Text
+#canvas1.create_text(170, 118, text="Height in Mtrs :-", font="arial 20")
+#canvas1.create_text(170, 185, text="Weight in Kgs :-", font="arial 20")
+#canvas1.create_text(249, 45, text="BMI CALCULATOR", font="arial 35 bold")
+#canvas1.create_text(105, 310, text="➡ BMI =", font="arial 20")
+#canvas1.create_text(250, 250, text="Calculated Result", font="arial 25")
+
+
+
+
+height = Label(hp, text="Height in Mtrs", font="arial 20")
+weight = Label(hp, text="Weight in kgs", font="arial 20")
+name = Label(hp, text="BMI calculator", font="arial 35 bold")
+bmi = Label(hp, text="➡ BMI =", font="arial 20")
+calul= Label(hp, text="Calculated Result", font="arial 25")
+
+
+
+
+height.place(x=70,y=100)
+weight.place(x=70,y=170)
+name.place(x=90,y=15)
+bmi.place(x=40,y=310)
+calul.place(x=50,y=250)
+
+
+
+
+
+def delete1():
+    weightentry.delete(0,END)
+    heightentry.delete(0,END)
+    p = Label(text="                                   ", font="arial 24").place(x=170, y=307)
+
+def cal():
+    h=float(heightentry.get())
+    l=float(weightentry.get())
+    bmi=l/(h*h)
+    bmi=round(bmi,1)
+
+    if bmi < 18.5:
+        #l=canvas1.create_text(310, 310, text=f"{bmi} is Underweight", font="arial 25 bold")
+        #canvas1.delete(l)
+        p = Label(text=f"{bmi} is Underweight", font="arial 24 bold").place(x=170, y=307)
+    elif (bmi > 18.5) and (bmi < 24.9):
+        #l=canvas1.create_text(310, 310, text=f"{bmi} is Normal", font="arial 25 bold")
+        #return l
+        p = Label(text=f"{bmi} is Normal", font="arial 24 bold").place(x=170, y=307)
+    elif (bmi > 24.9) and (bmi < 29.9):
+        #l=canvas1.create_text(310, 310, text=f"{bmi} is Overweight", font="arial 25 bold")
+        #return l
+        p = Label(text=f"{bmi} is Overweight", font="arial 24 bold").place(x=170, y=307)
+
+    elif (bmi > 29.9):
+        #l=canvas1.create_text(310, 310, text=f"{bmi} is Obesity", font="arial 25 bold")
+        #return l
+        p = Label(text=f"{bmi} is Obesity", font="arial 24 bold").place(x=170, y=307)
+    else:
+        #l=canvas1.create_text(310, 310, text="Something went wrong", font="arial 25 bold")
+        p = Label(text=f"Something went wrong", font="arial 24 bold").place(x=170, y=307)
+        #return l
+
+
+
+heightvalue=StringVar()
+weightvalue=StringVar()
+
+
+heightentry =Entry(hp, textvariable=heightvalue, font="arial 20", width=8)
+weightentry =Entry(hp, textvariable=weightvalue, font="arial 20", width=8)
+
+heightentry.place(x=290,y=100)
+weightentry.place(x=290,y=170)
+
+
+Button(text="Calculate", font="arial 15",command=cal).place(x=82, y=370)
+Button(hp, text="Clear all", command=delete1, font="arial 15", width=8).place(x=200, y=370)
+#Button(hp, text="Exit", command=lambda:hp.destroy(), font="arial 15",width=8).place(x=320, y=370)
+exit_button = Button(hp, text="Exit", font="arial 15" ,width=8   ,command=hp.destroy)
+exit_button.place(x=320, y=370)
+
+
+
+
+
+
+
+
+hp.mainloop()
